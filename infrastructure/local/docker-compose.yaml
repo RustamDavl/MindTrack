@@ -1,0 +1,17 @@
+services:
+  mindly-postgres:
+    image: postgres:17.0
+    container_name: mindly-postgres-cont
+    environment:
+      POSTGRES_DB: mindly
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    restart: always
+    volumes:
+      - ./infrastructure/postgres/init:/docker-entrypoint-initdb.d
+      - mindlypostgresdb-volume:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  mindlypostgresdb-volume:

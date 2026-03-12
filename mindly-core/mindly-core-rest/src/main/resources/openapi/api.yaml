@@ -1,0 +1,93 @@
+openapi: 3.0.0
+info:
+  title: UserService API
+  description: REST API для взаимодействия с сервисом UserService.
+  version: 0.1.0
+servers:
+  - url: http://localhost:8080
+
+
+paths:
+  /api/v1/notes:
+    post:
+      summary: Создание заметки
+      operationId: createNote
+      tags:
+        - NoteMutationRest
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NoteCreateRequest'
+      responses:
+        '201':
+          description: Идентификатор созданной заметки
+          content:
+            text/plain:
+              schema:
+                type: string
+  /api/v1/notes/{id}:
+    get:
+      summary: Получение заметки по идентификатору
+      operationId: getNoteById
+      tags:
+        - NoteSearchRest
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: UUID
+      responses :
+        '200':
+          description: Заметка
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NoteReadResponse'
+components:
+  schemas:
+    NoteCreateRequest:
+      description: Объект для создания заметки
+      type: object
+      required: [ title ]
+      properties:
+        title:
+          type: string
+          nullable: false
+          example: title
+        body:
+          type: string
+          nullable: true
+          example: body
+        color:
+          type: string
+          nullable: true
+          example: green
+    NoteReadResponse:
+      description: Объект, представляющий заметку
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: false
+        title:
+          type: string
+          nullable: false
+          example: title
+        body:
+          type: string
+          nullable: true
+          example: body
+        color:
+          type: string
+          nullable: true
+          example: green
+        createdAt:
+          type: object
+          nullable: false
+          example: 2026-02-10 05:00:19.905000 +00:00
