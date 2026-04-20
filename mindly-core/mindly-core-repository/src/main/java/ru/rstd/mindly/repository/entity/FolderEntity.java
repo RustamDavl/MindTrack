@@ -5,6 +5,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import ru.rstd.mindly.common.entity.AuditableEntity;
 
 import java.time.OffsetDateTime;
 import java.util.List;

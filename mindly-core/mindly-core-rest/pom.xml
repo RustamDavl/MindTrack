@@ -39,7 +39,12 @@
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>2.5.0</version>
+            <version>2.7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>ru.rstd.mindly</groupId>
+            <artifactId>mindly-core-security-service-api</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
@@ -55,7 +60,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${project.basedir}/src/main/resources/openapi/api.yaml</inputSpec>
+                            <inputSpec>${project.basedir}/src/main/resources/static/openapi/api.yaml</inputSpec>
                             <output>${project.build.directory}/generated-sources/openapi</output>
                             <generatorName>spring</generatorName>
                             <apiPackage>${openapi.codegen.base.package}.api</apiPackage>

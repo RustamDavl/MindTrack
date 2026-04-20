@@ -45,6 +45,11 @@
                 <artifactId>mindly-core-dao-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>ru.rstd.mindly</groupId>
+                <artifactId>mindly-common-model</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>

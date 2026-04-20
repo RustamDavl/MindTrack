@@ -38,6 +38,11 @@
             <groupId>ru.rstd.mindly</groupId>
             <artifactId>mindly-model</artifactId>
         </dependency>
+        <dependency>
+            <groupId>ru.rstd.mindly</groupId>
+            <artifactId>mindly-common-entity</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

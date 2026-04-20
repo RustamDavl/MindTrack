@@ -38,6 +38,21 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
         </dependency>
+        <dependency>
+            <groupId>ru.rstd.mindly</groupId>
+            <artifactId>mindly-core-security-service-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ru.rstd.mindly</groupId>
+            <artifactId>mindly-core-mail-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ru.rstd.mindly</groupId>
+            <artifactId>mindly-core-outbox-service-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

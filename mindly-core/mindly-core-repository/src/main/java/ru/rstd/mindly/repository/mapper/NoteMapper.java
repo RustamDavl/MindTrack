@@ -1,6 +1,7 @@
 package ru.rstd.mindly.repository.mapper;
 
 import org.springframework.stereotype.Component;
+import ru.rstd.mindly.common.model.mapper.Mapper;
 import ru.rstd.mindly.model.note.Note;
 import ru.rstd.mindly.repository.entity.NoteEntity;
 

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Email Confirmation</title>
+</head>
+
+<body style="margin:0;padding:0;background-color:#f4f6f8;font-family:Arial, Helvetica, sans-serif;">
+
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f6f8;padding:40px 0;">
+    <tr>
+        <td align="center">
+
+            <table width="600" cellpadding="0" cellspacing="0" style="background:white;border-radius:10px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,0.06);">
+
+                <!-- HEADER -->
+                <tr>
+                    <td style="background:#4f46e5;color:white;padding:30px;text-align:center;font-size:22px;font-weight:bold;">
+                        Подтверждение электронной почты
+                    </td>
+                </tr>
+
+                <!-- CONTENT -->
+                <tr>
+                    <td style="padding:40px 35px;color:#333;font-size:16px;line-height:1.6;">
+
+                        <p>
+                            Здравствуйте,
+                            <strong th:text="${username}">User</strong> 👋
+                        </p>
+
+                        <p>
+                            Спасибо за регистрацию!
+                            Чтобы активировать ваш аккаунт, пожалуйста подтвердите вашу электронную почту.
+                        </p>
+
+                        <p style="text-align:center;margin:35px 0;">
+
+                            <a th:href="${confirmationUrl}"
+                               style="
+   background:#4f46e5;
+   color:white;
+   padding:14px 28px;
+   text-decoration:none;
+   border-radius:6px;
+   font-weight:bold;
+   display:inline-block;
+   font-size:16px;
+   ">
+                                Подтвердить email
+                            </a>
+
+                        </p>
+
+                        <p style="font-size:14px;color:#555;">
+                            Если кнопка не работает, откройте ссылку ниже:
+                        </p>
+
+                        <p style="word-break:break-all;font-size:14px;">
+                            <a th:href="${confirmationUrl}" th:text="${confirmationUrl}" style="color:#4f46e5;">
+                                https://example.com
+                            </a>
+                        </p>
+
+                    </td>
+                </tr>
+
+                <!-- FOOTER -->
+                <tr>
+                    <td style="background:#f8fafc;padding:25px;text-align:center;font-size:13px;color:#888;">
+
+                        <p style="margin:0 0 10px 0;">
+                            Если вы не создавали аккаунт, просто проигнорируйте это письмо.
+                        </p>
+
+                        <p style="margin:0;">
+                            © 2026 YourApp
+                        </p>
+
+                    </td>
+                </tr>
+
+            </table>
+
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
