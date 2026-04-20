@@ -1,7 +1,8 @@
 package ru.rstd.mindly.model.note;
 
 import lombok.Data;
-import ru.rstd.mindly.model.audit.Auditable;
+import ru.rstd.mindly.common.model.audit.Auditable;
+
 
 @Data
 public class Note extends Auditable {

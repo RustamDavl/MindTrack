@@ -1,0 +1,269 @@
+openapi: 3.0.0
+info:
+  title: UserService API
+  description: REST API для взаимодействия с сервисом UserService.
+  version: 0.1.0
+servers:
+  - url: http://localhost:8080
+
+
+paths:
+  /api/v1/auth/register:
+    post:
+      summary:
+      operationId: registerUser
+      tags:
+        - UserAuthRestController
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        '201':
+          description:
+          content:
+            text/plain:
+              schema:
+                type: string
+  /api/v1/auth/confirm-email:
+    get:
+      summary: Confirm user email
+      operationId: confirmEmail
+      tags:
+        - UserAuthRestController
+      parameters:
+        - name: token
+          in: query
+          required: true
+          description: Email verification token
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Email successfully confirmed
+        '400':
+          description: Invalid or expired verification token
+  /api/v1/auth/confirm-mail:
+    post:
+      summary: Confirm user mail
+      operationId: confirmMail
+      tags:
+        - UserAuthRestController
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MailConfirmRequest'
+      responses:
+        '200':
+          description: Email confirmed or already confirmed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MailConfirmResponse'
+        '400':
+          description: Invalid or expired token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MailConfirmResponse'
+  /api/v1/auth/login:
+    post:
+      summary:
+      operationId: loginUser
+      tags:
+        - UserAuthRestController
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '201':
+          description:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+  /api/v1/auth/refresh:
+    post:
+      summary:
+      operationId: refreshToken
+      tags:
+        - UserAuthRestController
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshTokenRequest'
+      responses:
+        '201':
+          description:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+  /api/v1/notes:
+    post:
+      summary: Создание заметки
+      operationId: createNote
+      tags:
+        - NoteMutationRest
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NoteCreateRequest'
+      responses:
+        '201':
+          description: Идентификатор созданной заметки
+          content:
+            text/plain:
+              schema:
+                type: string
+  /api/v1/notes/{id}:
+    get:
+      summary: Получение заметки по идентификатору
+      operationId: getNoteById
+      tags:
+        - NoteSearchRest
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: UUID
+      responses:
+        '200':
+          description: Заметка
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NoteReadResponse'
+components:
+  schemas:
+    MailConfirmRequest:
+      description: Объект, хранящий токен пользователя
+      type: object
+      required: [token]
+      properties:
+        token:
+          type: string
+          nullable: false
+          example:
+    LoginRequest:
+      description: Объект для логина пользователя
+      type: object
+      required: [ email, password ]
+      properties:
+        email:
+          type: string
+          nullable: false
+          example: test@mail.ru
+        password:
+          type: string
+          nullable: false
+          example: changeme
+    RegisterRequest:
+      description: Объект для регистрации пользователя
+      type: object
+      required: [ name, string, password ]
+      properties:
+        name:
+          type: string
+          nullable: false
+          example: Anna
+        email:
+          type: string
+          nullable: false
+          example: test@mail.ru
+        password:
+          type: string
+          nullable: false
+          example: changeme
+    RefreshTokenRequest:
+      description: Объект для обновления пары токенов рефреш токену
+      type: object
+      required: [ refreshToken ]
+      properties:
+        refreshToken:
+          type: string
+          nullable: false
+          example: some-token
+    TokenResponse:
+      description: Объект для получения access токена по рефреш токену
+      type: object
+      properties:
+        accessToken:
+          type: string
+          nullable: false
+          example: some-token
+        refreshToken:
+          type: string
+          nullable: false
+          example: some-token
+        tokenType:
+          type: string
+          nullable: false
+          example: some-token
+    MailConfirmResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - SUCCESS
+            - EXPIRED
+            - INVALID
+            - ALREADY_CONFIRMED
+        message:
+          type: string
+    NoteCreateRequest:
+      description: Объект для создания заметки
+      type: object
+      required: [ title ]
+      properties:
+        title:
+          type: string
+          nullable: false
+          example: title
+        body:
+          type: string
+          nullable: true
+          example: body
+        color:
+          type: string
+          nullable: true
+          example: green
+    NoteReadResponse:
+      description: Объект, представляющий заметку
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: false
+        title:
+          type: string
+          nullable: false
+          example: title
+        body:
+          type: string
+          nullable: true
+          example: body
+        color:
+          type: string
+          nullable: true
+          example: green
+        createdAt:
+          type: object
+          nullable: false
+          example: 2026-02-10 05:00:19.905000 +00:00

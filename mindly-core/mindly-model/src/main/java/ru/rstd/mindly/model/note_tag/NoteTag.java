@@ -1,6 +1,6 @@
 package ru.rstd.mindly.model.note_tag;
 
-import ru.rstd.mindly.model.base.BaseModel;
+import ru.rstd.mindly.common.model.base.BaseModel;
 import ru.rstd.mindly.model.note.Note;
 import ru.rstd.mindly.model.tag.Tag;
 

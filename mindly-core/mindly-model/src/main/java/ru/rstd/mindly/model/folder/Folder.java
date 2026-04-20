@@ -1,6 +1,6 @@
 package ru.rstd.mindly.model.folder;
 
-import ru.rstd.mindly.model.audit.Auditable;
+import ru.rstd.mindly.common.model.audit.Auditable;
 
 public class Folder extends Auditable {
     private String name;

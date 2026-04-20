@@ -4,14 +4,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import ru.rstd.mindly.api.mutation.note.NoteMutationDao;
 import ru.rstd.mindly.repository.entity.NoteEntity;
-import ru.rstd.mindly.repository.NoteEntityJpaRepository;
-import ru.rstd.mindly.repository.mapper.Mapper;
+import ru.rstd.mindly.repository.jpa.NoteEntityJpaRepository;
 import ru.rstd.mindly.model.note.Note;
+import ru.rstd.mindly.repository.mapper.NoteMapper;
 
 @Repository
 @RequiredArgsConstructor
 public class NoteEntityMutationDao implements NoteMutationDao {
-    private final Mapper<NoteEntity, Note> mapper;
+    private final NoteMapper mapper;
     private final NoteEntityJpaRepository noteEntityJpaRepository;
 
     @Override

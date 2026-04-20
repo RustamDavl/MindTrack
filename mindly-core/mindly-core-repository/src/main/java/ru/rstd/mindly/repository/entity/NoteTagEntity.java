@@ -6,6 +6,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import ru.rstd.mindly.common.entity.BaseEntity;
 
 import java.util.UUID;
 
