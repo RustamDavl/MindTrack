@@ -100,7 +100,7 @@ public class SecurityConfiguration {
                         )
                         .hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**")
-                        .hasAnyRole("ADMIN")
+                        .hasAnyRole("USER", "ADMIN")// todo temp...
                         .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth -> oauth.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter)))
