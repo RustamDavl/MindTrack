@@ -1,34 +1,34 @@
 services:
-  mindly-app:
-    image: rustamdavl/mindly-app:latest
+  mindtrack-app:
+    image: rustamdavl/mindtrack-app:latest
     profiles: ["dev"]
     environment:
       SPRING_PROFILES_ACTIVE: local
     volumes:
-      - ./.env.docker:/app/mindly-application/.env:ro
+      - ./.env.docker:/app/mindtrack-application/.env:ro
     ports:
       - "8080:8080"
     depends_on:
-      - mindly-postgres
-      - mindly-mailhog
+      - mindtrack-postgres
+      - mindtrack-mailhog
       - broker-1
       - broker-2
 
-  mindly-postgres:
+  mindtrack-postgres:
     image: postgres:17.0
     profiles: ["local", "dev"]
-    container_name: mindly-postgres-cont
+    container_name: mindtrack-postgres-cont
     environment:
-      POSTGRES_DB: mindly
+      POSTGRES_DB: mindtrack
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
     restart: always
     volumes:
       - ../dev/postgres/init:/docker-entrypoint-initdb.d
-      - mindlypostgresdb-volume:/var/lib/postgresql/data
+      - mtrackpostgresdb-volume:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-  mindly-mailhog:
+  mindtrack-mailhog:
     image: mailhog/mailhog:latest
     profiles: ["local", "dev"]
     container_name: mailhog
@@ -111,7 +111,7 @@ services:
       - broker-2
   opensearch:
     image: opensearchproject/opensearch:latest
-    container_name: mindly-opensearch
+    container_name: mindtrack-opensearch
     environment:
       - cluster.name=opensearch-cluster
       - node.name=opensearch-node
@@ -127,7 +127,7 @@ services:
 
   dashboards:
     image: opensearchproject/opensearch-dashboards:latest
-    container_name: mindly-opensearch-dashboards
+    container_name: mindtrack-opensearch-dashboards
     ports:
       - "5601:5601"
     environment:
@@ -136,5 +136,5 @@ services:
       - opensearch
 
 volumes:
-  mindlypostgresdb-volume:
+  mtrackpostgresdb-volume:
   opensearch-data:

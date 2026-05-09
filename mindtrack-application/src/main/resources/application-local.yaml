@@ -1,0 +1,85 @@
+server:
+  port: ${APP_PORT}
+
+spring:
+  datasource:
+    url: jdbc:postgresql://${PG_HOST}:${PG_PORT}/${PG_NAME}?currentSchema=${PG_SCHEMA}
+    password: ${PG_PASSWORD}
+    username: ${PG_USERNAME}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      leak-detection-threshold: 20000
+      maximum-pool-size: 20
+  jpa:
+    open-in-view: false
+  liquibase:
+    change-log: classpath:liquibase/master/db.changelog-master.yaml
+    default-schema: ${PG_SCHEMA}
+    enabled: true
+    liquibase-schema: liquibase
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:${APP_PORT}/issuer
+  mail:
+    host: ${SPRING_MAIL_HOST}
+    port: ${SPRING_MAIL_PORT}
+    username: dummy
+    password: dummy
+    properties:
+      mail.smtp.auth: false
+      mail.smtp.starttls.enable: false
+  quartz:
+    job-store-type: jdbc
+    jdbc:
+      initialize-schema: never
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: MindTrackScheduler
+          jobStore:
+            class: org.springframework.scheduling.quartz.LocalDataSourceJobStore
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+            isClustered: false
+          threadPool:
+            threadCount: 10
+  kafka:
+    producer:
+      bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS}
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: all
+      properties:
+        max.in.flight.requests.per.connection: 5
+        enable:
+          idempotence: true
+    consumer:
+      bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS}
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+mtrack:
+  security:
+    access-token-ttl: 15m
+    refresh-token-ttl: 30d
+    secret: YzEyMzR0bXZxQzRmNTZ2cEFoUGVpMWdIajU3aWdoZ2g
+    issuer: mtrack.app
+    mail:
+      expiration-duration: 10m
+  mail:
+    mail-confirmation-url: ${MAIL_CONFIRMATION_URL}
+  job:
+    quartz:
+      datasource:
+        url: jdbc:postgresql://${PG_HOST}:${PG_PORT}/${PG_NAME}?currentSchema=${QRTZ_SCHEMA}
+        username: ${spring.datasource.username}
+        password: ${spring.datasource.password}
+        driver-class-name: ${spring.datasource.driver-class-name}
+        hikari:
+          pool-name: quartz-pool
+          maximum-pool-size: 15
+
+
