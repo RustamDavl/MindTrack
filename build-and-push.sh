@@ -5,6 +5,8 @@ set -e
 # ===== CONFIG =====
 REPO_NAME="mindly-app"   # можешь поменять под свой сервис
 DOCKER_USERNAME="rustamdavl"
+PLATFORMS="linux/amd64,linux/arm64"
+BUILDER_NAME="mindly-multiarch-builder"
 
 # ===== VERSION =====
 VERSION=$1
@@ -15,13 +17,25 @@ fi
 
 IMAGE_NAME="$DOCKER_USERNAME/$REPO_NAME:$VERSION"
 
-echo "🚀 Building Docker image: $IMAGE_NAME"
+echo "🚀 Building multi-arch Docker image: $IMAGE_NAME"
+echo "🧱 Platforms: $PLATFORMS"
 
-# ===== BUILD =====
-docker build -t $IMAGE_NAME -f infrastructure/local/dockerfiles/local.Dockerfile .
+# ===== BUILDX =====
+if ! docker buildx inspect "$BUILDER_NAME" >/dev/null 2>&1; then
+  docker buildx create --name "$BUILDER_NAME" --use
+else
+  docker buildx use "$BUILDER_NAME"
+fi
 
-# ===== PUSH =====
-echo "📤 Pushing image to Docker Hub: $IMAGE_NAME"
-docker push $IMAGE_NAME
+docker buildx inspect --bootstrap >/dev/null
+
+# ===== BUILD AND PUSH =====
+echo "📤 Building and pushing image to Docker Hub: $IMAGE_NAME"
+docker buildx build \
+  --platform "$PLATFORMS" \
+  -t "$IMAGE_NAME" \
+  -f infrastructure/local/dockerfiles/local.Dockerfile \
+  --push \
+  .
 
 echo "✅ Done!"
