@@ -16,7 +16,7 @@ import ru.rstd.mtrack.security.dao.user.UserSearchDao;
 import ru.rstd.mtrack.security.model.token.AccessWithRefreshToken;
 import ru.rstd.mtrack.security.model.token.MailConfirmationResponse;
 import ru.rstd.mtrack.security.model.token.MailConfirmationStatus;
-import ru.rstd.mtrack.security.model.token.MailVerificationException;
+import ru.rstd.mtrack.security.model.exception.MailVerificationException;
 import ru.rstd.mtrack.security.model.token.RefreshToken;
 import ru.rstd.mtrack.security.model.user.Role;
 import ru.rstd.mtrack.security.model.user.User;
@@ -88,6 +88,11 @@ public class UserAuthServiceImpl implements UserAuthService {
         );
 
         UserSecurityModel userSecurityModel = (UserSecurityModel) authentication.getPrincipal();
+
+        if(!userSecurityModel.getUser().getIsEmailVerified()) {
+            throw new MailVerificationException("Email is not verified.");
+        }
+
         User existerUser = userSearchService.findByEmail(userSecurityModel.getUser().getEmail());
 
         return issueTokensForUser(existerUser);

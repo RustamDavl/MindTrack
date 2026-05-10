@@ -1,4 +1,4 @@
-package ru.rstd.mtrack.security.model.token;
+package ru.rstd.mtrack.security.model.exception;
 
 public class MailVerificationException extends RuntimeException {
     public MailVerificationException() {

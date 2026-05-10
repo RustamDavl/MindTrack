@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
+import ru.rstd.mtrack.security.model.exception.MailVerificationException;
 
 @RestControllerAdvice
 public class RestControllerExceptionHandler {
@@ -20,6 +21,12 @@ public class RestControllerExceptionHandler {
 
     @ExceptionHandler(HttpServerErrorException.class)
     public ExceptionResponse handleHttpServerErrorException(HttpServerErrorException e) {
+        return new ExceptionResponse(e.getMessage());
+    }
+
+    @ExceptionHandler(MailVerificationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ExceptionResponse handleMailVerificationException(MailVerificationException e) {
         return new ExceptionResponse(e.getMessage());
     }
 }
