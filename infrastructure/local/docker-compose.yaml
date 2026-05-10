@@ -109,5 +109,32 @@ services:
     depends_on:
       - broker-1
       - broker-2
+  opensearch:
+    image: opensearchproject/opensearch:latest
+    container_name: mindly-opensearch
+    environment:
+      - cluster.name=opensearch-cluster
+      - node.name=opensearch-node
+      - discovery.type=single-node
+
+      - OPENSEARCH_INITIAL_ADMIN_PASSWORD=OhMyGodRonny0_0
+      - OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m
+    ports:
+      - "9200:9200"
+      - "9600:9600"
+    volumes:
+      - opensearch-data:/usr/share/opensearch/data
+
+  dashboards:
+    image: opensearchproject/opensearch-dashboards:latest
+    container_name: mindly-opensearch-dashboards
+    ports:
+      - "5601:5601"
+    environment:
+      OPENSEARCH_HOSTS: '["https://opensearch:9200"]'
+    depends_on:
+      - opensearch
+
 volumes:
   mindlypostgresdb-volume:
+  opensearch-data:
