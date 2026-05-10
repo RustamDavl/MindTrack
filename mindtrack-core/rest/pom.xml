@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>ru.rstd.mtrack</groupId>
+        <artifactId>mindtrack-core</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>rest</artifactId>
+
+    <properties>
+        <maven.compiler.source>25</maven.compiler.source>
+        <maven.compiler.target>25</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <openapi.codegen.base.package>ru.rstd.mtrack.rest</openapi.codegen.base.package>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>ru.rstd.mtrack</groupId>
+            <artifactId>service-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>ru.rstd.mtrack</groupId>
+            <artifactId>security-service-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>7.15.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/static/openapi/api.yaml</inputSpec>
+                            <output>${project.build.directory}/generated-sources/openapi</output>
+                            <generatorName>spring</generatorName>
+                            <apiPackage>${openapi.codegen.base.package}.api</apiPackage>
+                            <modelPackage>${openapi.codegen.base.package}.dto</modelPackage>
+                            <configOptions>
+                                <sourceFolder>src/java/main</sourceFolder>
+                                <configPackage>${openapi.codegen.base.package}.config</configPackage>
+                                <useJakartaEe>true</useJakartaEe>
+                                <interfaceOnly>true</interfaceOnly> <!--генерирует только интерфейсы, без реализации-->
+                                <skipDefaultInterface>true
+                                </skipDefaultInterface>  <!--не генерирует дефолтные методы для интерфейсов-->
+                                <useTags>true
+                                </useTags>  <!--по умолч. генерирует общий интерфейс со всеми методами, но с данной настройко отдельные, а так же с помощью тегов идет разделение кода по интерфейсам + теги добавляются в название интерфейса-->
+                                <useBeanValidation>true
+                                </useBeanValidation> <!--проставляет валидирующие аннотации в дто-->
+                                <openApiNullable>false</openApiNullable> <!--позволяет избавиться от библиотеки-->
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

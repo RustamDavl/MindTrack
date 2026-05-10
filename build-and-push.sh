@@ -3,10 +3,10 @@
 set -e
 
 # ===== CONFIG =====
-REPO_NAME="mindly-app"   # можешь поменять под свой сервис
+REPO_NAME="mindtrack-app"
 DOCKER_USERNAME="rustamdavl"
 PLATFORMS="linux/amd64,linux/arm64"
-BUILDER_NAME="mindly-multiarch-builder"
+BUILDER_NAME="mindtrack-multiarch-builder"
 
 # ===== VERSION =====
 VERSION=$1

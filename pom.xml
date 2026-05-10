@@ -4,43 +4,43 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ru.rstd.mindly</groupId>
-    <artifactId>Mindly</artifactId>
+    <groupId>ru.rstd.mtrack</groupId>
+    <artifactId>MindTrack</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>mindly-core</module>
-        <module>mindly-application</module>
-        <module>mindly-core/mindly-core-security</module>
-        <module>mindly-core/mindly-core-mail</module>
-        <module>mindly-core/mindly-core-security/mindly-core-security-service-api</module>
-        <module>mindly-core/mindly-core-security/mindly-core-security-service</module>
-        <module>mindly-core/mindly-core-outbox</module>
-        <module>mindly-core/mindly-core-outbox/mindly-core-outbox-service-api</module>
-        <module>mindly-core/mindly-core-outbox/mindly-core-outbox-service</module>
-        <module>mindly-core/mindly-core-outbox/mindly-core-outbox-model</module>
-        <module>mindly-core/mindly-job</module>
-        <module>mindly-core/mindly-job/mindly-job-api</module>
-        <module>mindly-core/mindly-job/mindly-job-service</module>
-        <module>mindly-core/mindly-core-outbox/mindly-core-outbox-entity</module>
-        <module>mindly-core/mindly-core-outbox/mindly-core-outbox-dao-api</module>
-        <module>mindly-core/mindly-core-outbox/mindly-core-outbox-repository</module>
-        <module>mindly-core/mindly-core-security/mindly-core-security-model</module>
-        <module>mindly-core/mindly-common-model</module>
-        <module>mindly-core/mindly-core-security/mindly-core-security-dao-api</module>
-        <module>mindly-core/mindly-core-security/mindly-core-security-repository</module>
-        <module>mindly-core/mindly-common-entity</module>
-        <module>mindly-core/mindly-core-mail/mindly-core-mail-model</module>
-        <module>mindly-core/mindly-core-kafka</module>
-        <module>mindly-core/mindly-core-kafka/mindly-core-kafka-model</module>
-        <module>mindly-core/mindly-core-kafka/mindly-core-kafka-service</module>
-        <module>mindly-core/mindly-core-kafka/mindly-core-kafka-api</module>
-        <module>mindly-core/mindly-core-outbox/mindly-core-outbox-configuration</module>
-        <module>mindly-core/mindly-job/mindly-job-configuration</module>
-        <module>mindly-core/mindly-core-kafka/mindly-core-kafka-configuration</module>
-        <module>mindly-core/mindly-core-mail/mindly-core-mail-configuration</module>
-        <module>mindly-core/mindly-core-security/mindly-core-security-configuration</module>
+        <module>mindtrack-core</module>
+        <module>mindtrack-application</module>
+        <module>mindtrack-core/security</module>
+        <module>mindtrack-core/mail</module>
+        <module>mindtrack-core/security/security-service-api</module>
+        <module>mindtrack-core/security/security-service</module>
+        <module>mindtrack-core/outbox</module>
+        <module>mindtrack-core/outbox/outbox-service-api</module>
+        <module>mindtrack-core/outbox/outbox-service</module>
+        <module>mindtrack-core/outbox/outbox-model</module>
+        <module>mindtrack-core/scheduled-job</module>
+        <module>mindtrack-core/scheduled-job/scheduled-job-api</module>
+        <module>mindtrack-core/scheduled-job/scheduled-job-service</module>
+        <module>mindtrack-core/outbox/outbox-entity</module>
+        <module>mindtrack-core/outbox/outbox-dao-api</module>
+        <module>mindtrack-core/outbox/outbox-repository</module>
+        <module>mindtrack-core/security/security-model</module>
+        <module>mindtrack-core/common-model</module>
+        <module>mindtrack-core/security/security-dao-api</module>
+        <module>mindtrack-core/security/security-repository</module>
+        <module>mindtrack-core/common-entity</module>
+        <module>mindtrack-core/mail/mail-model</module>
+        <module>mindtrack-core/kafka</module>
+        <module>mindtrack-core/kafka/kafka-model</module>
+        <module>mindtrack-core/kafka/kafka-service</module>
+        <module>mindtrack-core/kafka/kafka-api</module>
+        <module>mindtrack-core/outbox/outbox-configuration</module>
+        <module>mindtrack-core/scheduled-job/scheduled-job-configuration</module>
+        <module>mindtrack-core/kafka/kafka-configuration</module>
+        <module>mindtrack-core/mail/mail-configuration</module>
+        <module>mindtrack-core/security/security-configuration</module>
     </modules>
 
     <properties>
