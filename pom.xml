@@ -41,6 +41,7 @@
         <module>mindtrack-core/kafka/kafka-configuration</module>
         <module>mindtrack-core/mail/mail-configuration</module>
         <module>mindtrack-core/security/security-configuration</module>
+        <module>mindtrack-test</module>
     </modules>
 
     <properties>

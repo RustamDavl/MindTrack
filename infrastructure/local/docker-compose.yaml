@@ -112,6 +112,7 @@ services:
   opensearch:
     image: opensearchproject/opensearch:latest
     container_name: mindtrack-opensearch
+    profiles: ["test"]
     environment:
       - cluster.name=opensearch-cluster
       - node.name=opensearch-node
@@ -127,6 +128,7 @@ services:
 
   dashboards:
     image: opensearchproject/opensearch-dashboards:latest
+    profiles: ["test"]
     container_name: mindtrack-opensearch-dashboards
     ports:
       - "5601:5601"
