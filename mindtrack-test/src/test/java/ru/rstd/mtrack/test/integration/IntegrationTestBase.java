@@ -9,7 +9,7 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import ru.rstd.mtrack.application.MindTrackAppRunner;
 
 @ActiveProfiles("test")
-@SpringBootTest(classes = MindTrackAppRunner.class)
+@SpringBootTest(classes = MindTrackAppRunner.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public abstract class IntegrationTestBase {
 
     private static final PostgreSQLContainer<?> postgreSQLContainer = new PostgreSQLContainer<>("postgres:17");
