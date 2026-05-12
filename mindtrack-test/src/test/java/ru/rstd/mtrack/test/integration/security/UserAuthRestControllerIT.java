@@ -10,12 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import ru.rstd.mtrack.security.model.token.AccessWithRefreshToken;
-import ru.rstd.mtrack.security.model.token.MailConfirmationStatus;
-import ru.rstd.mtrack.security.model.user.User;
-import ru.rstd.mtrack.security.model.user.UserRequest;
-import ru.rstd.mtrack.security.service.api.user.UserAuthService;
-import ru.rstd.mtrack.security.service.api.user.UserSearchService;
+import ru.rstd.mtrack.core.security.model.token.AccessWithRefreshToken;
+import ru.rstd.mtrack.core.security.model.token.MailConfirmationStatus;
+import ru.rstd.mtrack.core.security.model.user.User;
+import ru.rstd.mtrack.core.security.model.user.UserRequest;
+import ru.rstd.mtrack.core.security.service.api.user.UserAuthService;
+import ru.rstd.mtrack.core.security.service.api.user.UserSearchService;
 import ru.rstd.mtrack.test.integration.IntegrationTestBase;
 
 import java.util.Map;

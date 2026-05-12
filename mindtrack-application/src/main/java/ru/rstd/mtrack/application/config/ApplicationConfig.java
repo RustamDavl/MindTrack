@@ -6,23 +6,23 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import ru.rstd.mtrack.job.configuration.QuartzConfiguration;
-import ru.rstd.mtrack.kafka.configuration.MtrackKafkaModuleConfiguration;
-import ru.rstd.mtrack.mail.configuration.MailConfig;
-import ru.rstd.mtrack.outbox.configuration.OutboxConfiguration;
-import ru.rstd.mtrack.security.configuration.SecurityConfiguration;
+import ru.rstd.mtrack.core.job.configuration.QuartzConfiguration;
+import ru.rstd.mtrack.core.kafka.configuration.MtrackKafkaModuleConfiguration;
+import ru.rstd.mtrack.core.mail.configuration.MailConfig;
+import ru.rstd.mtrack.core.outbox.configuration.OutboxConfiguration;
+import ru.rstd.mtrack.core.security.configuration.SecurityConfiguration;
 
 
 @Configuration
 @EnableConfigurationProperties
-@EnableJpaRepositories(basePackages = "ru.rstd.mtrack.repository.jpa")
+@EnableJpaRepositories(basePackages = "ru.rstd.mtrack.core.repository.jpa")
 @EntityScan(basePackages = {
-        "ru.rstd.mtrack.common.entity",
-        "ru.rstd.mtrack.repository.entity"
+        "ru.rstd.mtrack.core.common.entity",
+        "ru.rstd.mtrack.core.repository.entity"
 })
 @ComponentScan(basePackages = {
-        "ru.rstd.mtrack.service",
-        "ru.rstd.mtrack.rest",
+        "ru.rstd.mtrack.core.service",
+        "ru.rstd.mtrack.core.rest",
         "ru.rstd.mtrack"
 })
 @Import({
