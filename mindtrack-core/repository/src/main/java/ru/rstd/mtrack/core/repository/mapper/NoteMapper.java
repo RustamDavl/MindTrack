@@ -1,7 +1,7 @@
 package ru.rstd.mtrack.core.repository.mapper;
 
 import org.springframework.stereotype.Component;
-import ru.rstd.mtrack.core.common.model.mapper.Mapper;
+import ru.rstd.mtrack.core.common.mapper.Mapper;
 import ru.rstd.mtrack.core.model.note.Note;
 import ru.rstd.mtrack.core.repository.entity.NoteEntity;
 

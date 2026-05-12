@@ -3,7 +3,7 @@ package ru.rstd.mtrack.core.kafka.service.impl;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-import ru.rstd.mtrack.core.kafka.api.KafkaSenderService;
+import ru.rstd.mtrack.core.kafka.service.api.KafkaSenderService;
 import ru.rstd.mtrack.core.kafka.model.KafkaMessage;
 
 @Service

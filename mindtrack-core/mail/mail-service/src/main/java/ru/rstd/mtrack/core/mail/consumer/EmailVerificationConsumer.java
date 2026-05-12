@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
-import ru.rstd.mtrack.core.mail.api.EmailService;
+import ru.rstd.mtrack.core.mail.service.api.EmailService;
 import ru.rstd.mtrack.core.mail.model.EmailMessageType;
 import ru.rstd.mtrack.core.mail.model.MtrackMailMessage;
 import ru.rstd.mtrack.core.mail.properties.AppMailProperties;

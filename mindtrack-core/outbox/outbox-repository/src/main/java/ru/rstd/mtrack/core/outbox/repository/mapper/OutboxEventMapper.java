@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import ru.rstd.mtrack.core.common.model.mapper.Mapper;
+import ru.rstd.mtrack.core.common.mapper.Mapper;
 import ru.rstd.mtrack.core.outbox.entity.OutboxEventEntity;
 import ru.rstd.mtrack.core.outbox.entity.OutboxEventEntityStatus;
 import ru.rstd.mtrack.core.outbox.entity.OutboxEventEntityType;

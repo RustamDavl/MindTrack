@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
-import ru.rstd.mtrack.core.security.model.exception.MailVerificationException;
+import ru.rstd.mtrack.core.security.exception.MailVerificationException;
 
 @RestControllerAdvice
 public class RestControllerExceptionHandler {

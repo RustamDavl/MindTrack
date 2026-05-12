@@ -3,7 +3,7 @@ package ru.rstd.mtrack.core.rest.mutation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-import ru.rstd.mtrack.core.input.mutation.note.NoteMutationService;
+import ru.rstd.mtrack.core.service.api.mutation.note.NoteMutationService;
 import ru.rstd.mtrack.core.model.note.Note;
 import ru.rstd.mtrack.core.rest.api.NoteMutationRestApi;
 import ru.rstd.mtrack.core.rest.dto.NoteCreateRequest;

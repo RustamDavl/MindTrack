@@ -6,13 +6,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.support.TransactionTemplate;
 import ru.rstd.mtrack.core.job.api.EmailVerificationMessageEventService;
-import ru.rstd.mtrack.core.kafka.api.KafkaSenderService;
+import ru.rstd.mtrack.core.kafka.service.api.KafkaSenderService;
 import ru.rstd.mtrack.core.kafka.model.KafkaMessage;
 import ru.rstd.mtrack.core.outbox.model.OutboxEventModel;
 import ru.rstd.mtrack.core.outbox.model.OutboxEventStatus;
 import ru.rstd.mtrack.core.outbox.model.OutboxEventType;
 import ru.rstd.mtrack.core.outbox.service.mutation.OutboxEventMutationService;
-import ru.rstd.mtrack.core.outbox.service.search.OutboxEventSearchService;
+import ru.rstd.mtrack.core.outbox.service.api.search.OutboxEventSearchService;
 import ru.rstd.mtrack.core.security.model.user.UserWithEmailToken;
 
 import java.util.ArrayList;

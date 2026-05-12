@@ -24,9 +24,9 @@ import org.springframework.security.oauth2.jwt.JwtValidators;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import ru.rstd.mtrack.core.security.impl.converter.CustomJwtAuthenticationConverter;
-import ru.rstd.mtrack.core.security.impl.properties.JwtProperties;
-import ru.rstd.mtrack.core.security.impl.service.user.UserDetailsServiceImpl;
+import ru.rstd.mtrack.core.security.service.converter.CustomJwtAuthenticationConverter;
+import ru.rstd.mtrack.core.security.service.properties.JwtProperties;
+import ru.rstd.mtrack.core.security.service.impl.user.UserDetailsServiceImpl;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
@@ -36,11 +36,11 @@ import java.nio.charset.StandardCharsets;
         "ru.rstd.mtrack.core.security"
 })
 @EnableJpaRepositories(basePackages = {
-        "ru.rstd.mtrack.core.security.jpa"
+        "ru.rstd.mtrack.core.security.repository.jpa"
 })
 @Configuration
 @RequiredArgsConstructor
-@EntityScan(basePackages = "ru.rstd.mtrack.core.security.entity")
+@EntityScan(basePackages = "ru.rstd.mtrack.core.security.repository.entity")
 public class SecurityConfiguration {
     private final JwtProperties jwtProperties;
 

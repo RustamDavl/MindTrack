@@ -21,8 +21,6 @@ import ru.rstd.mtrack.core.security.configuration.SecurityConfiguration;
         "ru.rstd.mtrack.core.repository.entity"
 })
 @ComponentScan(basePackages = {
-        "ru.rstd.mtrack.core.service",
-        "ru.rstd.mtrack.core.rest",
         "ru.rstd.mtrack"
 })
 @Import({

@@ -3,7 +3,7 @@ package ru.rstd.mtrack.core.rest.search;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-import ru.rstd.mtrack.core.input.search.note.NoteSearchService;
+import ru.rstd.mtrack.core.service.api.search.note.NoteSearchService;
 import ru.rstd.mtrack.core.model.note.Note;
 import ru.rstd.mtrack.core.rest.api.NoteSearchRestApi;
 import ru.rstd.mtrack.core.rest.dto.NoteReadResponse;
