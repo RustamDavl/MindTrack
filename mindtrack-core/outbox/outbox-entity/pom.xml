@@ -21,8 +21,12 @@
     <dependencies>
         <dependency>
             <groupId>ru.rstd.mtrack</groupId>
-            <artifactId>repository</artifactId>
+            <artifactId>common-entity</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
         </dependency>
     </dependencies>
 

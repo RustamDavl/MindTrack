@@ -21,7 +21,7 @@
     <dependencies>
         <dependency>
             <groupId>ru.rstd.mtrack</groupId>
-            <artifactId>model</artifactId>
+            <artifactId>common-model</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
