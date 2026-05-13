@@ -15,7 +15,7 @@
         <maven.compiler.source>25</maven.compiler.source>
         <maven.compiler.target>25</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <openapi.codegen.base.package>ru.rstd.mtrack.rest</openapi.codegen.base.package>
+        <openapi.codegen.base.package>ru.rstd.mtrack.core.rest</openapi.codegen.base.package>
     </properties>
 
     <dependencies>
