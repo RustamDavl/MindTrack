@@ -47,7 +47,7 @@ public class EmailVerificationMessageEventServiceImpl implements EmailVerificati
         List<OutboxEventModel> precessed = new ArrayList<>();
         for (OutboxEventModel eventModel : eventModels) {
             try {
-                kafkaSenderService.send(new KafkaMessage(EMAIL_VERIFICATION_MESSAGE_EVENT_TOPIC, null, convert(eventModel.getPayload())));
+                kafkaSenderService.sendAsync(new KafkaMessage(EMAIL_VERIFICATION_MESSAGE_EVENT_TOPIC, null, convert(eventModel.getPayload())));
                 precessed.add(eventModel);
             } catch (Exception e) {
                 //todo
