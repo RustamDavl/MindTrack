@@ -11,7 +11,7 @@ import ru.rstd.mtrack.core.kafka.model.KafkaMessage;
 import ru.rstd.mtrack.core.outbox.model.OutboxEventModel;
 import ru.rstd.mtrack.core.outbox.model.OutboxEventStatus;
 import ru.rstd.mtrack.core.outbox.model.OutboxEventType;
-import ru.rstd.mtrack.core.outbox.service.mutation.OutboxEventMutationService;
+import ru.rstd.mtrack.core.outbox.service.api.mutation.OutboxEventMutationService;
 import ru.rstd.mtrack.core.outbox.service.api.search.OutboxEventSearchService;
 import ru.rstd.mtrack.core.security.model.user.UserWithEmailToken;
 

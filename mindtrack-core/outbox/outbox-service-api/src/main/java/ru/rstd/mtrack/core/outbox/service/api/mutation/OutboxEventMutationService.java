@@ -1,4 +1,4 @@
-package ru.rstd.mtrack.core.outbox.service.mutation;
+package ru.rstd.mtrack.core.outbox.service.api.mutation;
 
 import ru.rstd.mtrack.core.outbox.model.OutboxEventModel;
 import ru.rstd.mtrack.core.outbox.model.OutboxEventStatus;

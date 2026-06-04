@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.rstd.mtrack.core.outbox.model.OutboxEventModel;
 import ru.rstd.mtrack.core.outbox.model.OutboxEventStatus;
 import ru.rstd.mtrack.core.outbox.model.OutboxEventType;
-import ru.rstd.mtrack.core.outbox.service.mutation.OutboxEventMutationService;
+import ru.rstd.mtrack.core.outbox.service.api.mutation.OutboxEventMutationService;
 import ru.rstd.mtrack.core.security.dao.api.user.UserSearchDao;
 import ru.rstd.mtrack.core.security.model.token.AccessWithRefreshToken;
 import ru.rstd.mtrack.core.security.model.token.MailConfirmationResponse;

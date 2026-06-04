@@ -3,6 +3,7 @@ package ru.rstd.mtrack.core.mail.service.impl;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ import ru.rstd.mtrack.core.mail.model.MtrackMailMessage;
 
 import java.nio.charset.StandardCharsets;
 
-
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class EmailServiceImpl implements EmailService {
@@ -31,9 +32,10 @@ public class EmailServiceImpl implements EmailService {
             String emailContent = createContent(mtrackMailMessage);
             helper.setText(emailContent, true);
 
+            log.debug("Sending email");
             mailSender.send(mailMessage);
         } catch (MessagingException e) {
-
+            log.error("Exception occurred while sending email", e);
         }
     }
 

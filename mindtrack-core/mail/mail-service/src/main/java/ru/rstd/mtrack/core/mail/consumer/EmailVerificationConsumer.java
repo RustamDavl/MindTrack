@@ -1,6 +1,7 @@
 package ru.rstd.mtrack.core.mail.consumer;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -12,6 +13,7 @@ import ru.rstd.mtrack.core.security.model.user.UserWithEmailToken;
 
 import java.util.Map;
 
+@Slf4j
 @KafkaListener(
         topics = {"email_verification_message_event"},
         groupId = "email_verification_message_event_group"
@@ -24,6 +26,8 @@ public class EmailVerificationConsumer {
 
     @KafkaHandler
     public void consumer(UserWithEmailToken userWithEmailToken) {
+        log.debug("Consuming email verification message");
+
         MtrackMailMessage message = new MtrackMailMessage(
                 EmailMessageType.EMAIL_CONFIRMATION,
                 "Email confirmation",
@@ -33,6 +37,7 @@ public class EmailVerificationConsumer {
 
         );
 
+        log.debug("Sending email confirmation message");
         emailService.sendEmail(message, false);
     }
 }

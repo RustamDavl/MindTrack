@@ -58,6 +58,9 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       properties:
         spring.json.trusted.packages: "*"
+logging:
+  level:
+    ru.rstd.mtrack.core.mail: debug
 mtrack:
   security:
     access-token-ttl: 15m
