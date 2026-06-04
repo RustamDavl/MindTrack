@@ -7,6 +7,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import ru.rstd.mtrack.core.common.entity.AuditableEntity;
+import ru.rstd.mtrack.core.security.repository.entity.UserEntity;
 
 import java.time.OffsetDateTime;
 import java.util.UUID;
@@ -32,6 +33,9 @@ public class NoteEntity extends AuditableEntity {
         this.color = color;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
     private String title;
     private String body;
     private String color;

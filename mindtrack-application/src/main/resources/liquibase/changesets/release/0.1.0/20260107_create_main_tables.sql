@@ -4,6 +4,7 @@
 CREATE TABLE IF NOT EXISTS mtrack.folder
 (
     id         UUID PRIMARY KEY DEFAULT pg_catalog.gen_random_uuid(),
+    user_id    UUID                     NOT NULL references users (id),
     name       VARCHAR(256),
     color      VARCHAR(128),
     created_at TIMESTAMP WITH TIME ZONE NOT NULL,
@@ -15,6 +16,7 @@ CREATE TABLE IF NOT EXISTS mtrack.folder
 CREATE TABLE IF NOT EXISTS mtrack.note
 (
     id         UUID PRIMARY KEY DEFAULT pg_catalog.gen_random_uuid(),
+    user_id    UUID                     NOT NULL references users (id),
     folder_id  UUID references mtrack.folder (id),
     title      VARCHAR(256),
     body       TEXT,
@@ -37,6 +39,7 @@ CREATE TABLE IF NOT EXISTS mtrack.tag
 CREATE TABLE IF NOT EXISTS mtrack.note_tag
 (
     id      UUID PRIMARY KEY DEFAULT pg_catalog.gen_random_uuid(),
+    user_id UUID NOT NULL references users (id),
     note_id UUID REFERENCES note (id) ON DELETE CASCADE,
     tag_id  UUID REFERENCES tag (id) ON DELETE CASCADE,
     UNIQUE (note_id, tag_id)

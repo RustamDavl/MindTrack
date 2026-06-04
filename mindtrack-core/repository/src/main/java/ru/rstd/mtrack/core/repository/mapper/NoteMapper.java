@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 import ru.rstd.mtrack.core.common.mapper.Mapper;
 import ru.rstd.mtrack.core.model.note.Note;
 import ru.rstd.mtrack.core.repository.entity.NoteEntity;
+import ru.rstd.mtrack.core.security.repository.entity.UserEntity;
 
 @Component
 public class NoteMapper implements Mapper<NoteEntity, Note> {
@@ -16,6 +17,9 @@ public class NoteMapper implements Mapper<NoteEntity, Note> {
         noteEntity.setColor(model.getColor());
         noteEntity.setCreatedAt(model.getCreatedAt());
         noteEntity.setUpdatedAt(model.getUpdatedAt());
+        UserEntity user = new UserEntity();
+        user.setId(model.getUserId());
+        noteEntity.setUser(user);
 
         return noteEntity;
     }
@@ -28,6 +32,7 @@ public class NoteMapper implements Mapper<NoteEntity, Note> {
         note.setColor(entity.getColor());
         note.setId(entity.getId());
         note.setCreatedAt(entity.getCreatedAt());
+        note.setUserId(entity.getUser().getId());
 
         return note;
     }

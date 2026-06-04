@@ -8,6 +8,8 @@ import ru.rstd.mtrack.core.repository.jpa.NoteEntityJpaRepository;
 import ru.rstd.mtrack.core.model.note.Note;
 import ru.rstd.mtrack.core.repository.mapper.NoteMapper;
 
+import java.util.UUID;
+
 @Repository
 @RequiredArgsConstructor
 public class NoteEntityMutationDao implements NoteMutationDao {
@@ -19,5 +21,10 @@ public class NoteEntityMutationDao implements NoteMutationDao {
         final NoteEntity noteEntity = mapper.toEntity(note);
         final NoteEntity savedNote = noteEntityJpaRepository.save(noteEntity);
         return mapper.toModel(savedNote);
+    }
+
+    @Override
+    public void delete(UUID noteId) {
+        noteEntityJpaRepository.deleteById(noteId);
     }
 }

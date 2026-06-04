@@ -1,8 +1,8 @@
 databaseChangeLog:
   - include:
-      file: liquibase/changesets/release/0.1.0/20260107_create_main_tables.sql
+        file: liquibase/changesets/release/0.1.0/20260313_create_users_table.sql
   - include:
-      file: liquibase/changesets/release/0.1.0/20260313_create_users_table.sql
+      file: liquibase/changesets/release/0.1.0/20260107_create_main_tables.sql
   - include:
       file: liquibase/changesets/release/0.1.0/20260313_create_refresh_token_table.sql
   - include:

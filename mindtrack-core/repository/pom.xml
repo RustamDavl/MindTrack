@@ -43,6 +43,11 @@
             <artifactId>common-entity</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>ru.rstd.mtrack</groupId>
+            <artifactId>security-repository</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

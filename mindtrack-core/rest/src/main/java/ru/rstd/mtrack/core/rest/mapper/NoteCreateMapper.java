@@ -12,7 +12,6 @@ public class NoteCreateMapper implements CreateMapper<NoteCreateRequest, Note> {
     @Override
     public Note toModel(NoteCreateRequest noteCreateRequest) {
         Note note = new Note();
-        note.setCreatedAt(OffsetDateTime.now());
         note.setTitle(noteCreateRequest.getTitle());
         note.setBody(noteCreateRequest.getBody());
         note.setColor(noteCreateRequest.getColor());
