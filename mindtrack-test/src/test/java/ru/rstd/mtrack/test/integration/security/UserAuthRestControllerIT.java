@@ -112,8 +112,8 @@ class UserAuthRestControllerIT extends IntegrationTestBase {
                 .post("/api/v1/auth/login")
                 .then()
                 .statusCode(200)
-                .body("accessToken", Matchers.not(Matchers.blankOrNullString()))
-                .body("refreshToken", Matchers.not(Matchers.blankOrNullString()));
+                .cookie("refresh-token", Matchers.not(Matchers.blankOrNullString()))
+                .body("accessToken", Matchers.not(Matchers.blankOrNullString()));
     }
 
     @Test
@@ -125,19 +125,18 @@ class UserAuthRestControllerIT extends IntegrationTestBase {
         ValidatableResponse response = RestAssured
                 .given()
                 .contentType(JSON)
-                .body(Map.of("refreshToken", tokens.refreshToken()))
+                .body(Map.of("refreshToken", tokens.responseRefreshTokenCookie().getValue()))
                 .when()
                 .post("/api/v1/auth/refresh")
                 .then()
                 .statusCode(200)
-                .body("accessToken", Matchers.not(Matchers.blankOrNullString()))
-                .body("refreshToken", Matchers.not(Matchers.blankOrNullString()));
+                .cookie("refresh-token", Matchers.not(Matchers.blankOrNullString()))
+                .body("accessToken", Matchers.not(Matchers.blankOrNullString()));
 
-        String refreshedRefreshToken = response.extract().path("refreshToken");
+        String refreshedRefreshToken = response.cookie("refresh-token").toString();
 
-        Assertions.assertThat(refreshedRefreshToken).isNotEqualTo(tokens.refreshToken());
-        Assertions.assertThat(isRefreshTokenRevoked(tokens.refreshToken())).isTrue();
-        Assertions.assertThat(isRefreshTokenRevoked(refreshedRefreshToken)).isFalse();
+        Assertions.assertThat(refreshedRefreshToken).isNotEqualTo(tokens.responseRefreshTokenCookie().getValue());
+        Assertions.assertThat(isRefreshTokenRevoked(tokens.responseRefreshTokenCookie().getValue())).isTrue();
     }
 
     private void registerVerifiedUser(String email) {

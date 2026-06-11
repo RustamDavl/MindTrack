@@ -47,3 +47,13 @@ mtrack:
         username: ${spring.datasource.username}
         password: ${spring.datasource.password}
         driver-class-name: ${spring.datasource.driver-class-name}
+  security:
+    cookie:
+      tokens:
+        refresh-token:
+          http-only: true
+          secure: false
+          path: /api/v1/auth/refresh
+          max-age: ${mtrack.security.refresh-token-ttl}
+          domain: mindtrack
+          same-site: y

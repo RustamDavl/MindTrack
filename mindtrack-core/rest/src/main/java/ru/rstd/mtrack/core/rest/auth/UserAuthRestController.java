@@ -1,6 +1,7 @@
 package ru.rstd.mtrack.core.rest.auth;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,8 +55,9 @@ public class UserAuthRestController implements UserAuthRestControllerApi {
         AccessWithRefreshToken tokens = userAuthService.login(user);
         TokenResponse tokenResponse = new TokenResponse();
         tokenResponse.accessToken(tokens.accessToken());
-        tokenResponse.refreshToken(tokens.refreshToken());
-        return ResponseEntity.ok(tokenResponse);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.SET_COOKIE, tokens.responseRefreshTokenCookie().toString())
+                .body(tokenResponse);
     }
 
     @Override
@@ -63,7 +65,8 @@ public class UserAuthRestController implements UserAuthRestControllerApi {
         AccessWithRefreshToken tokens = userAuthService.refreshToken(refreshTokenRequest.getRefreshToken());
         TokenResponse tokenResponse = new TokenResponse();
         tokenResponse.accessToken(tokens.accessToken());
-        tokenResponse.refreshToken(tokens.refreshToken());
-        return ResponseEntity.ok(tokenResponse);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.SET_COOKIE, tokens.responseRefreshTokenCookie().toString())
+                .body(tokenResponse);
     }
 }

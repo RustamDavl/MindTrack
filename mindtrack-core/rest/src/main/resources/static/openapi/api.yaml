@@ -10,7 +10,7 @@ servers:
 paths:
   /api/v1/auth/register:
     post:
-      summary:
+      summary: API для регистрации нового пользователя
       operationId: registerUser
       tags:
         - UserAuthRestController
@@ -22,7 +22,7 @@ paths:
               $ref: '#/components/schemas/RegisterRequest'
       responses:
         '201':
-          description:
+          description: Сообщение, содержащее результат регистрации
           content:
             text/plain:
               schema:
@@ -203,10 +203,6 @@ components:
       type: object
       properties:
         accessToken:
-          type: string
-          nullable: false
-          example: some-token
-        refreshToken:
           type: string
           nullable: false
           example: some-token

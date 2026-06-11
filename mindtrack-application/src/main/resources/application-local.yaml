@@ -69,6 +69,15 @@ mtrack:
     issuer: mtrack.app
     mail:
       expiration-duration: 10m
+    cookie:
+      tokens:
+        refresh-token:
+          http-only: true
+          secure: false
+          path: /api/v1/auth/refresh
+          max-age: ${mtrack.security.refresh-token-ttl}
+          domain: mindtrack
+          same-site: y
   mail:
     mail-confirmation-url: ${MAIL_CONFIRMATION_URL}
   job:

@@ -1,6 +1,7 @@
 package ru.rstd.mtrack.core.security.service.impl.user;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseCookie;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -28,6 +29,7 @@ import ru.rstd.mtrack.core.security.service.api.token.RefreshTokenMutationServic
 import ru.rstd.mtrack.core.security.service.api.token.RefreshTokenSearchService;
 import ru.rstd.mtrack.core.security.service.api.token.AccessTokenService;
 import ru.rstd.mtrack.core.security.service.api.user.UserAuthService;
+import ru.rstd.mtrack.core.security.service.properties.CookieProperties;
 import ru.rstd.mtrack.core.security.service.properties.JwtProperties;
 import ru.rstd.mtrack.core.security.model.user.UserRequest;
 import ru.rstd.mtrack.core.security.service.api.user.UserMutationService;
@@ -43,6 +45,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserAuthServiceImpl implements UserAuthService {
     private static final SecureRandom SECURE_RANDOM = new SecureRandom();
+    private static final String REFRESH_TOKEN_COOKE_NAME = "refresh-token";
+
     private final UserMutationService userMutationService;
     private final UserSearchService userSearchService;
     private final UserSearchDao userSearchDao;
@@ -54,6 +58,7 @@ public class UserAuthServiceImpl implements UserAuthService {
     private final RefreshTokenMutationService refreshTokenMutationService;
     private final OutboxEventMutationService outboxEventMutationService;
     private final EmailVerificationTokenMutationService emailVerificationTokenMutationService;
+    private final CookieProperties cookieProperties;
 
     @Override
     @Transactional
@@ -89,7 +94,7 @@ public class UserAuthServiceImpl implements UserAuthService {
 
         UserSecurityModel userSecurityModel = (UserSecurityModel) authentication.getPrincipal();
 
-        if(!userSecurityModel.getUser().getIsEmailVerified()) {
+        if (!userSecurityModel.getUser().getIsEmailVerified()) {
             throw new MailVerificationException("Email is not verified.");
         }
 
@@ -99,6 +104,7 @@ public class UserAuthServiceImpl implements UserAuthService {
     }
 
     @Override
+    @Transactional
     public MailConfirmationResponse confirm(String token) {
         MailConfirmationResponse response = emailVerificationTokenMutationService.confirmEmailToken(token);
 
@@ -155,7 +161,7 @@ public class UserAuthServiceImpl implements UserAuthService {
 
         refreshTokenMutationService.save(refreshToken);
 
-        return new AccessWithRefreshToken(accessToken, refreshToken.getToken());
+        return new AccessWithRefreshToken(accessToken, buildResponseCookieString(refreshToken.getToken()));
     }
 
     private String generateRefreshToken() {
@@ -172,5 +178,18 @@ public class UserAuthServiceImpl implements UserAuthService {
         user.setRoles(List.of(new UserRole(Role.USER.name())));
         user.setIsEmailVerified(false);
         return user;
+    }
+
+    private ResponseCookie buildResponseCookieString(String token) {
+        CookieProperties.CookieConfig config = cookieProperties.getCookie(REFRESH_TOKEN_COOKE_NAME);
+
+
+        return ResponseCookie.from(REFRESH_TOKEN_COOKE_NAME, token)
+                .domain(config.getDomain())
+                .path(config.getPath())
+                .httpOnly(config.isHttpOnly())
+                .maxAge(config.getMaxAge())
+                .sameSite(config.getSameSite())
+                .build();
     }
 }
